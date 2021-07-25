@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<form action="/guestbook3/delete" method="get">
+<form action="${pageContext.request.contextPath}/delete" method="get">
 <input type="hidden" name="no" value="${no}">
 비밀번호확인:<input type="password" name="password" value="">
 			 <button type="submit">확인</button>

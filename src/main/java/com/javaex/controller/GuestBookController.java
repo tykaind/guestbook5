@@ -2,6 +2,7 @@ package com.javaex.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,14 +14,14 @@ import com.javaex.vo.GuestBookVo;
 @Controller
 public class GuestBookController {
 	
+	@Autowired
+	GuestBookDao guestbookDao;
 	
 	//리스트
-	@RequestMapping("/addlist")
+	@RequestMapping("/addList")
 	public String addlist(Model model) {
 		
-		GuestBookDao guestbookDao = new GuestBookDao();
-		List<GuestBookVo> guestList = guestbookDao.getGuestList();
-		System.out.println(guestList);
+		List<GuestBookVo> guestList = guestbookDao.getGuestBookVo();
 		model.addAttribute("guestList", guestList);
 		
 		return "/WEB-INF/views/addList.jsp";
@@ -30,10 +31,9 @@ public class GuestBookController {
 	@RequestMapping("/add")
 	public String add(GuestBookVo guestbookVo) {
 		
-		GuestBookDao guestbookDao = new GuestBookDao();
 		guestbookDao.guestInsert(guestbookVo);
 		
-		return "redirect:/addlist";
+		return "redirect:/addList";
 	}
 	
 	//삭제폼
@@ -49,10 +49,9 @@ public class GuestBookController {
 	@RequestMapping("/delete")
 	public String delete(@RequestParam("no") int no,@RequestParam("password") String password) {
 		
-		GuestBookDao guestbookDao = new GuestBookDao();
-		guestbookDao.guestDelete(no, password);
+		//guestbookDao.guestDelete(no, password);
 		
-		return "redirect:/addlist";
+		return "redirect:/addList";
 	}
 	
 }

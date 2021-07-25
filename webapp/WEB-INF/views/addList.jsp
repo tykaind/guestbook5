@@ -9,7 +9,7 @@
 </head>
 <body>
 	<!-------------------- 등록폼 -------------------->
-	<form action="/guestbook3/add" method="get">
+	<form action="${pageContext.request.contextPath}/add" method="get">
 		<table border="1">
 			<tr>
 				<td>이름</td>
@@ -39,7 +39,7 @@
 			<td>${gList.no}</td>
 			<td>${gList.name}</td>
 			<td>${gList.reg_date}</td>
-			<td><a href="/guestbook3/deleteForm?no=${gList.no}">삭제</a></td>
+			<td><a href="${pageContext.request.contextPath}/deleteForm?no=${gList.no}">삭제</a></td>
 		</tr>
 		<tr>
 			<td colspan="4" height="60">${gList.content}</td>
