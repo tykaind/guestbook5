@@ -24,7 +24,7 @@ public class GuestBookController {
 		List<GuestBookVo> guestList = guestbookDao.getGuestBookVo();
 		model.addAttribute("guestList", guestList);
 		
-		return "/WEB-INF/views/addList.jsp";
+		return "addList";
 	}
 	
 	//등록
@@ -42,16 +42,18 @@ public class GuestBookController {
 		System.out.println(no);
 		model.addAttribute("no", no);
 		
-		return "/WEB-INF/views/deleteForm.jsp";
+		return "deleteForm";
 	}
 	
 	//삭제
 	@RequestMapping("/delete")
 	public String delete(@RequestParam("no") int no,@RequestParam("password") String password) {
 		
-		//guestbookDao.guestDelete(no, password);
+		guestbookDao.guestDelete(no, password);
 		
 		return "redirect:/addList";
 	}
+	
+	//수정
 	
 }
